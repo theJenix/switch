@@ -29,5 +29,5 @@ _SwitchGetCon ()   #  By convention, the function name
   return 0
 }
 
-complete -F _SwitchGetCon -o filenames ./switch
+complete -F _SwitchGetCon ./switch
 
