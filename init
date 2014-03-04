@@ -1,0 +1,31 @@
+#!/bin/bash
+#
+
+set -e
+
+if [ -n "$1" ]
+  then
+    root="$1"
+  else
+    root=.
+fi
+
+if [ ! -d $root ]
+  then
+    mkdir -p "$root"
+fi
+
+if [ -e "$root/conf" ]
+  then
+    mv "$root/conf" "$root/conf.old"
+fi
+
+if [ -e "$root/src" ]
+  then
+    mv "$root/src" "$root/src.old"
+fi
+
+mkdir "$root/conf"
+mkdir "$root/src"
+
+ln -s bin/switch $root/switch

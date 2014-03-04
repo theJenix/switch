@@ -1,0 +1,30 @@
+#!/bin/bash
+#
+
+
+function link_from_conf() {
+
+    while read line
+    do
+        if [ -n "$line" ]
+          then
+            ln -s src/$line $line
+        fi
+    done < conf/$1.conf
+}
+
+if [ -z "$1" ]
+  then
+    echo "Usage: switch <config>"
+    exit 1
+fi
+
+find . -maxdepth 1 -type l -exec rm -f {} \;
+
+#DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# always relink the switch script (this may go away if we deploy
+# to a system bin folder)
+
+ln -s bin/switch switch
+link_from_conf always
+link_from_conf $1
