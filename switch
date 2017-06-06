@@ -1,6 +1,8 @@
 #!/bin/bash
 #
 
+set -e
+#set -x
 
 function link_from_conf() {
 
@@ -8,7 +10,10 @@ function link_from_conf() {
     do
         if [ -n "$line" ]
           then
-            ln -s src/$line $line
+            for i in src/$line;
+            do
+                ln -s $i
+            done
         fi
     done < conf/$1.conf
 }
